@@ -1,4 +1,4 @@
-// Badge system and streak tracking for CodePVG
+// Badge system and streak tracking for codCampus
 
 import { createClient } from '@/lib/supabase/server'
 import { emailService } from '@/lib/email/service'

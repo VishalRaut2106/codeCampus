@@ -44,7 +44,7 @@ export default function ForgotPasswordPage() {
             <div className="text-center mb-8">
               <div className="inline-flex items-center gap-3 mb-6">
                 <Code2 className="h-8 w-8 text-primary" />
-                <h1 className="text-2xl font-bold">CodePVG</h1>
+                <h1 className="text-2xl font-bold">codCampus</h1>
               </div>
               
               <div className="w-20 h-20 mx-auto mb-6 rounded-full bg-gradient-to-br from-green-500/20 to-green-500/10 flex items-center justify-center">
@@ -66,7 +66,7 @@ export default function ForgotPasswordPage() {
                 <h3 className="font-semibold text-foreground mb-2">What to do next:</h3>
                 <ol className="text-sm text-muted-foreground space-y-1">
                   <li>1. Check your email inbox</li>
-                  <li>2. Look for an email from CodePVG</li>
+                  <li>2. Look for an email from codCampus</li>
                   <li>3. Click the password reset link</li>
                   <li>4. Create a new password</li>
                 </ol>
@@ -108,7 +108,7 @@ export default function ForgotPasswordPage() {
           <div className="text-center mb-8">
             <div className="inline-flex items-center gap-3 mb-6">
               <Code2 className="h-8 w-8 text-primary" />
-              <h1 className="text-2xl font-bold">CodePVG</h1>
+              <h1 className="text-2xl font-bold">codCampus</h1>
             </div>
             
             <div className="w-20 h-20 mx-auto mb-6 rounded-full bg-gradient-to-br from-primary/20 to-primary/10 flex items-center justify-center">

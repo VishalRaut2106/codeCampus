@@ -1,4 +1,4 @@
-// Comprehensive Error Handler for CodePVG
+// Comprehensive Error Handler for codCampus
 // Handles all types of errors with proper logging and user feedback
 
 import { getUserFriendlyError, sanitizeErrorMessage } from './error-handling/user-friendly-errors'

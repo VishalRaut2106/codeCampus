@@ -92,12 +92,12 @@ export async function POST(request: Request) {
         await admin
           .from('contests')
           .insert({
-            name: `CodePVG Challenge ${imported + 1} - ${new Date().toLocaleDateString()}`,
+            name: `codCampus Challenge ${imported + 1} - ${new Date().toLocaleDateString()}`,
             description: `A competitive coding challenge to test your skills.`,
             start_time: new Date(c.startTime).toISOString(),
             // Set end time to exactly 24 hours after start time
             end_time: new Date(new Date(c.startTime).getTime() + 24 * 60 * 60 * 1000).toISOString(),
-            platform: 'codepvg',
+            platform: 'codcampus',
             external_url: c.url,
           })
         imported++

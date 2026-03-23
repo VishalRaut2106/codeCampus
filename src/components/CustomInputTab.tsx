@@ -29,7 +29,7 @@ interface CustomTestCase {
 // STORAGE UTILITIES
 // ============================================================================
 
-const getStorageKey = (problemId: string) => `codepvg_custom_inputs_${problemId}`
+const getStorageKey = (problemId: string) => `codcampus_custom_inputs_${problemId}`
 
 const saveCustomInputs = (problemId: string, inputs: CustomTestCase[]) => {
   try {

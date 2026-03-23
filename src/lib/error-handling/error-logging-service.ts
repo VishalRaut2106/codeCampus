@@ -1,4 +1,4 @@
-// Centralized Error Logging Service for CodePVG
+// Centralized Error Logging Service for codCampus
 // Logs all errors with context and sends to monitoring services
 
 export interface ErrorContext {

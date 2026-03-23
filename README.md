@@ -2,7 +2,7 @@
 
 ---
 
-# 🚀 CodePVG - College Coding Platform
+# 🚀 codCampus - College Coding Platform
 
 <div align="center">
 
@@ -15,13 +15,13 @@
 
 **A professional coding platform exclusively for college students to solve problems, track progress, compete in contests, and maintain daily coding streaks.**
 
-[![Live Demo](https://img.shields.io/badge/Live_Demo-Available-brightgreen?style=for-the-badge)]([https://your-demo-url.com](https://codepvg.vercel.app/))
+[![Live Demo](https://img.shields.io/badge/Live_Demo-Available-brightgreen?style=for-the-badge)]([https://your-demo-url.com](https://codcampus.vercel.app/))
 [![License](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)](LICENSE)
 [![Contributors](https://img.shields.io/badge/Contributors-Welcome-blue?style=for-the-badge)](CONTRIBUTING.md)
 
 </div>
 
-[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&size=33&pause=1000&color=F76751&background=34D0FF00&center=true&width=435&lines=Welcome+To+codePVG)](https://git.io/typing-svg)
+[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&size=33&pause=1000&color=F76751&background=34D0FF00&center=true&width=435&lines=Welcome+To+codCampus)](https://git.io/typing-svg)
 ---
 
 ## 📋 Table of Contents
@@ -45,7 +45,7 @@
 
 ## 🎯 Overview
 
-CodePVG is a **college-based coding platform** that allows students to:
+codCampus is a **college-based coding platform** that allows students to:
 
 * Solve problems with live code execution
 * Participate in contests & leaderboards
@@ -118,10 +118,10 @@ It integrates **Supabase**, **Judge0**, and **Next.js** for a smooth and modern 
 
 ```bash
 # 1️⃣ Clone the repository
-git clone https://github.com/vishalraut2106/codepvg.git
+git clone https://github.com/vishalraut2106/codcampus.git
 
 # 2️⃣ Move to directory
-cd codepvg
+cd codcampus
 
 # 3️⃣ Install dependencies
 npm install
@@ -144,7 +144,7 @@ npm run dev
 ## 🏗️ Architecture
 
 ```
-codepvg/
+codcampus/
 ├── components/
 ├── pages/
 ├── app/
@@ -184,9 +184,9 @@ This project is licensed under the **MIT License** — see the [LICENSE](LICENSE
 
 **Made with ❤️ for the coding community**
 
-[![GitHub stars](https://img.shields.io/github/stars/vishalraut2106/code-PVG?style=social)](https://github.com/vishalraut2106/code-PVG)
-[![GitHub forks](https://img.shields.io/github/forks/vishalraut2106/code-PVG?style=social)](https://github.com/vishalraut2106/code-PVG)
-[![GitHub watchers](https://img.shields.io/github/watchers/vishalraut2106/code-PVG?style=social)](https://github.com/vishalraut2106/code-PVG)
+[![GitHub stars](https://img.shields.io/github/stars/vishalraut2106/codeCampus?style=social)](https://github.com/vishalraut2106/codeCampus)
+[![GitHub forks](https://img.shields.io/github/forks/vishalraut2106/codeCampus?style=social)](https://github.com/vishalraut2106/codeCampus)
+[![GitHub watchers](https://img.shields.io/github/watchers/vishalraut2106/codeCampus?style=social)](https://github.com/vishalraut2106/codeCampus)
 
 </div>
 

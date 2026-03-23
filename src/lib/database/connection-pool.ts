@@ -71,7 +71,7 @@ export function createProductionClient(config: ConnectionConfig = {}) {
     },
     global: {
       headers: {
-        'x-application-name': 'code-pvg',
+        'x-application-name': 'cod-campus',
       },
     },
     db: {
@@ -111,7 +111,7 @@ export function createServiceRoleClient(config: ConnectionConfig = {}) {
     },
     global: {
       headers: {
-        'x-application-name': 'code-pvg-admin',
+        'x-application-name': 'cod-campus-admin',
       },
     },
     db: {

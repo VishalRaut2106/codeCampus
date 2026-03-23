@@ -1,4 +1,4 @@
-// Email service for CodePVG notifications using Supabase Auth
+// Email service for codCampus notifications using Supabase Auth
 
 import { createClient } from '@/lib/supabase/server'
 import { generateWelcomeEmail, generateApprovalEmail, generateContestReminderEmail, generateStreakMilestoneEmail, generateContestResultsEmail, EmailTemplate } from './templates'

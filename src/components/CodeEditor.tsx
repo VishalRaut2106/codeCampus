@@ -88,7 +88,7 @@ export default function CodeEditor({
     editorRef.current = editor
 
     // Configure Monaco Editor
-    monaco.editor.defineTheme('codepvg-dark', {
+    monaco.editor.defineTheme('codcampus-dark', {
       base: 'vs-dark',
       inherit: true,
       rules: [
@@ -106,7 +106,7 @@ export default function CodeEditor({
       }
     })
 
-    monaco.editor.setTheme('codepvg-dark')
+    monaco.editor.setTheme('codcampus-dark')
   }
 
   const handleRunCode = async () => {

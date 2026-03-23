@@ -21,12 +21,12 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "CodePVG - College Coding Platform",
+  title: "codCampus - College Coding Platform",
   description: "A professional coding platform exclusively for college students to solve problems, track progress, compete in contests, and maintain daily coding streaks.",
   keywords: ["coding", "programming", "college", "contests", "problems", "leetcode", "coding platform"],
-  authors: [{ name: "CodePVG Team" }],
+  authors: [{ name: "codCampus Team" }],
   openGraph: {
-    title: "CodePVG - College Coding Platform",
+    title: "codCampus - College Coding Platform",
     description: "A professional coding platform exclusively for college students",
     type: "website",
   },

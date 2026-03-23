@@ -1,6 +1,6 @@
 # Real-time Subscription System
 
-This directory contains the optimized real-time subscription system for CodePVG, implementing requirements 8.2, 8.4, 8.5, 8.7, and 8.8.
+This directory contains the optimized real-time subscription system for codCampus, implementing requirements 8.2, 8.4, 8.5, 8.7, and 8.8.
 
 ## Features
 

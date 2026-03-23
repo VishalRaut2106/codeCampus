@@ -9,7 +9,7 @@ import type { ProgrammingLanguage } from '@/types'
 import type { StoredCode, SplitViewPreferences, StoredCustomInput } from './types'
 
 const STORAGE_VERSION = 1
-const STORAGE_PREFIX = 'codepvg'
+const STORAGE_PREFIX = 'codcampus'
 const MAX_AGE_DAYS = 30
 
 /**

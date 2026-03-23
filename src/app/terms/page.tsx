@@ -27,7 +27,7 @@ export default function TermsOfServicePage() {
             </CardHeader>
             <CardContent>
               <p className="text-muted-foreground">
-                By accessing and using CodePVG (&quot;the Platform&quot;), you accept and agree to be bound by the 
+                By accessing and using codCampus (&quot;the Platform&quot;), you accept and agree to be bound by the 
                 terms and provision of this agreement. If you do not agree to abide by the above, please 
                 do not use this service.
               </p>
@@ -41,7 +41,7 @@ export default function TermsOfServicePage() {
             </CardHeader>
             <CardContent className="space-y-4">
               <p className="text-muted-foreground">
-                CodePVG is an educational coding platform designed for college students to:
+                codCampus is an educational coding platform designed for college students to:
               </p>
               <ul className="list-disc list-inside space-y-1 text-muted-foreground">
                 <li>Practice coding problems and challenges</li>
@@ -132,7 +132,7 @@ export default function TermsOfServicePage() {
               <div>
                 <h3 className="font-semibold mb-2">Platform Content</h3>
                 <p className="text-muted-foreground">
-                  All problems, test cases, and platform content are owned by CodePVG or licensed 
+                  All problems, test cases, and platform content are owned by codCampus or licensed 
                   from third parties. You may not reproduce or distribute this content without permission.
                 </p>
               </div>
@@ -205,7 +205,7 @@ export default function TermsOfServicePage() {
               <div>
                 <h3 className="font-semibold mb-2">Limitation of Liability</h3>
                 <p className="text-muted-foreground">
-                  CodePVG shall not be liable for any indirect, incidental, special, or consequential 
+                  codCampus shall not be liable for any indirect, incidental, special, or consequential 
                   damages arising from your use of the platform.
                 </p>
               </div>
@@ -274,11 +274,11 @@ export default function TermsOfServicePage() {
             <CardContent className="pt-6">
               <div className="text-center">
                 <p className="text-muted-foreground mb-4">
-                  By using CodePVG, you acknowledge that you have read, understood, and agree to be 
+                  By using codCampus, you acknowledge that you have read, understood, and agree to be 
                   bound by these Terms of Service.
                 </p>
                 <p className="text-sm text-muted-foreground">
-                  These terms constitute the entire agreement between you and CodePVG regarding 
+                  These terms constitute the entire agreement between you and codCampus regarding 
                   your use of the platform.
                 </p>
               </div>

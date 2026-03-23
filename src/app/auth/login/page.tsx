@@ -169,7 +169,7 @@ export default function LoginPage() {
           <div className="simple-card text-center">
             <div className="inline-flex items-center gap-3 mb-6">
               <Code2 className="h-8 w-8 text-primary" />
-              <h1 className="text-2xl font-bold">CodePVG</h1>
+              <h1 className="text-2xl font-bold">codCampus</h1>
             </div>
             <div className="flex items-center justify-center gap-2">
               <div className="w-4 h-4 border-2 border-primary border-t-transparent rounded-full animate-spin"></div>
@@ -188,7 +188,7 @@ export default function LoginPage() {
           <div className="text-center mb-8">
             <div className="inline-flex items-center gap-3 mb-6">
               <Code2 className="h-8 w-8 text-primary" />
-              <h1 className="text-2xl font-bold">CodePVG</h1>
+              <h1 className="text-2xl font-bold">codCampus</h1>
             </div>
             <h2 className="text-xl font-semibold text-foreground mb-2">Welcome Back</h2>
             <p className="text-muted-foreground">Sign in to your account to continue</p>

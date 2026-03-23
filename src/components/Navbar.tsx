@@ -78,7 +78,7 @@ export default function Navbar() {
             href="/"
             className="flex items-center gap-2 text-xl font-bold text-foreground hover:opacity-80 transition-opacity">
             <Code2 className="h-8 w-8 text-primary" />
-            <span>CodePVG</span>
+            <span>codCampus</span>
           </Link>
 
 

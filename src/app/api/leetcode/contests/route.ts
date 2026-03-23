@@ -8,7 +8,7 @@ export async function GET() {
       method: 'GET',
       headers: {
         'Accept': 'application/json',
-        'User-Agent': 'CodePVG/1.0'
+        'User-Agent': 'codCampus/1.0'
       },
       // Ensure Next can cache this on the server
       next: { revalidate: 300 }

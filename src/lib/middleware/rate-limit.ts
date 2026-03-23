@@ -1,5 +1,5 @@
 /**
- * Rate Limiting Middleware for CodePVG
+ * Rate Limiting Middleware for codCampus
  * 
  * This middleware implements rate limiting to prevent abuse and DoS attacks.
  * It uses an in-memory store for simplicity, but can be extended to use Redis for production.

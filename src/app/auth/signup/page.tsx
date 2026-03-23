@@ -168,7 +168,7 @@ export default function SignupPage() {
           <div className="text-center mb-8">
             <div className="inline-flex items-center gap-3 mb-6">
               <Code2 className="h-8 w-8 text-primary" />
-              <h1 className="text-2xl font-bold">CodePVG</h1>
+              <h1 className="text-2xl font-bold">codCampus</h1>
             </div>
             <h2 className="text-xl font-semibold text-foreground mb-2">Create Account</h2>
             <p className="text-muted-foreground">Join our community of coding enthusiasts</p>

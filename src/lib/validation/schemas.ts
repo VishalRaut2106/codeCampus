@@ -1,5 +1,5 @@
 /**
- * Validation Schemas for CodePVG API Endpoints
+ * Validation Schemas for codCampus API Endpoints
  * 
  * This file contains Zod schemas for validating all API request inputs.
  * Schemas validate request bodies, query parameters, and path parameters.

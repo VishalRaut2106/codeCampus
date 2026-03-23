@@ -27,7 +27,7 @@ export default function PrivacyPolicyPage() {
             </CardHeader>
             <CardContent className="prose prose-invert max-w-none">
               <p>
-                CodePVG ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy 
+                codCampus ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy 
                 explains how we collect, use, disclose, and safeguard your information when you use our 
                 coding platform and services.
               </p>
@@ -198,7 +198,7 @@ export default function PrivacyPolicyPage() {
                 If you have any questions about this Privacy Policy or our data practices, please contact us:
               </p>
               <div className="space-y-2 text-muted-foreground">
-                <p><strong>Email:</strong> privacy@codepvg.com</p>
+                <p><strong>Email:</strong> privacy@codcampus.com</p>
                 <p><strong>Address:</strong> Pune, Maharashtra, India</p>
                 <p><strong>Phone:</strong> +91 98765 43210</p>
               </div>

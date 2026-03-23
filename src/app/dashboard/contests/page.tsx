@@ -110,14 +110,14 @@ export default function ContestsPage() {
 
 
 
-        {/* CodePVG Contests Section */}
+        {/* codCampus Contests Section */}
         <div className="mb-16">
           <div className="flex items-center gap-4 mb-8">
             <div className="w-12 h-12 bg-primary/20 rounded-xl flex items-center justify-center">
               <span className="text-2xl font-bold text-primary">PVG</span>
             </div>
             <div>
-              <h2 className="text-3xl font-bold text-foreground">CodePVG Contests</h2>
+              <h2 className="text-3xl font-bold text-foreground">codCampus Contests</h2>
               <p className="text-muted-foreground">Our exclusive coding competitions</p>
             </div>
           </div>

@@ -1,4 +1,4 @@
-// GSAP animations for CodePVG
+// GSAP animations for codCampus
 
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'

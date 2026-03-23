@@ -26,7 +26,7 @@ interface LoginPromptProps {
 }
 
 export default function LoginPrompt({ 
-  title = "Join CodePVG to Continue",
+  title = "Join codCampus to Continue",
   description = "Access coding problems, contests, and compete with other developers",
   features = [
     "Solve 100+ coding problems",

@@ -45,7 +45,7 @@ export class LeetCodeContestService {
         method: 'GET',
         headers: {
           'Accept': 'application/json',
-          'User-Agent': 'CodePVG/1.0'
+          'User-Agent': 'codCampus/1.0'
         }
       });
 
@@ -54,7 +54,7 @@ export class LeetCodeContestService {
           method: 'GET',
           headers: {
             'Accept': 'application/json',
-            'User-Agent': 'CodePVG/1.0'
+            'User-Agent': 'codCampus/1.0'
           }
         });
       }

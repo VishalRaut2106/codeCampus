@@ -495,12 +495,12 @@ export default function ContestsPage() {
               </div>
             </div>
 
-            {/* Rules Card - CodePVG Specific with Read More Sheet */}
+            {/* Rules Card - codCampus Specific with Read More Sheet */}
             <div className="bg-[#0a0a0a]/80 border border-white/5 rounded-xl p-5">
               <div className="flex items-center justify-between mb-4">
                 <h3 className="font-bold flex items-center gap-2">
                   <Sparkles className="h-4 w-4 text-primary" />
-                  CodePVG Rules
+                  codCampus Rules
                 </h3>
                 <Sheet>
                   <SheetTrigger asChild>
@@ -510,7 +510,7 @@ export default function ContestsPage() {
                   </SheetTrigger>
                   <SheetContent className="overflow-y-auto">
                     <SheetHeader>
-                      <SheetTitle>CodePVG Assessment Guidelines</SheetTitle>
+                      <SheetTitle>codCampus Assessment Guidelines</SheetTitle>
                       <SheetDescription>
                         Standard operating procedures for all college assessments.
                       </SheetDescription>

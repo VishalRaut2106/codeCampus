@@ -172,7 +172,7 @@ export default function EnhancedCodeEditor({
     monacoRef.current = monaco
 
     // Configure Monaco theme
-    monaco.editor.defineTheme('codepvg-dark', {
+    monaco.editor.defineTheme('codcampus-dark', {
       base: 'vs-dark',
       inherit: true,
       rules: [
@@ -190,7 +190,7 @@ export default function EnhancedCodeEditor({
       },
     })
 
-    monaco.editor.setTheme('codepvg-dark')
+    monaco.editor.setTheme('codcampus-dark')
 
     // Add keyboard shortcuts
     editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, () => {

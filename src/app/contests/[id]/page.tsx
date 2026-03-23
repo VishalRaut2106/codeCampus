@@ -246,7 +246,7 @@ export default function ContestPage() {
                         <span className="text-sm text-muted-foreground">Ends today at {endTime.toLocaleTimeString()}</span>
                       )}
                     </div>
-                    <h1 className="text-4xl font-bold tracking-tight">{contest?.name || 'CodePVG Challenge'}</h1>
+                    <h1 className="text-4xl font-bold tracking-tight">{contest?.name || 'codCampus Challenge'}</h1>
                     <p className="text-xl text-muted-foreground mt-2 max-w-2xl">
                       Solve {problems.length} problems within the time limit to climb the leaderboard.
                     </p>

@@ -168,7 +168,7 @@ export default function PendingApprovalPage() {
           <div className="text-center mb-8">
             <div className="inline-flex items-center gap-3 mb-6">
               <Code2 className="h-8 w-8 text-primary" />
-              <h1 className="text-2xl font-bold">CodePVG</h1>
+              <h1 className="text-2xl font-bold">codCampus</h1>
             </div>
             
             <div className="w-20 h-20 mx-auto mb-6 rounded-full bg-gradient-to-br from-primary/20 to-primary/10 flex items-center justify-center">

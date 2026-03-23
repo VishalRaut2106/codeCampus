@@ -32,7 +32,7 @@ export default function Home() {
           </div>
 
           <h1 className="text-6xl md:text-8xl font-black mb-8 gradient-text">
-            CodePVG
+            codCampus
           </h1>
 
           <p className="text-2xl md:text-3xl text-muted-foreground mb-12 max-w-4xl mx-auto leading-relaxed">
@@ -114,7 +114,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="text-center mb-20">
             <h2 className="text-5xl md:text-6xl font-bold text-foreground mb-6">
-              Why Choose <span className="gradient-text">CodePVG</span>?
+              Why Choose <span className="gradient-text">codCampus</span>?
             </h2>
             <p className="text-xl text-muted-foreground max-w-4xl mx-auto leading-relaxed">
               Experience the future of competitive programming with cutting-edge technology and immersive design

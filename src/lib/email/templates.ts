@@ -1,4 +1,4 @@
-// Email templates for CodePVG notifications
+// Email templates for codCampus notifications
 
 export interface EmailTemplate {
   subject: string
@@ -8,14 +8,14 @@ export interface EmailTemplate {
 
 export function generateWelcomeEmail(name: string): EmailTemplate {
   return {
-    subject: 'Welcome to CodePVG! 🎉',
+    subject: 'Welcome to codCampus! 🎉',
     html: `
       <!DOCTYPE html>
       <html>
         <head>
           <meta charset="utf-8">
           <meta name="viewport" content="width=device-width, initial-scale=1.0">
-          <title>Welcome to CodePVG</title>
+          <title>Welcome to codCampus</title>
           <style>
             body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px; }
             .header { background: linear-gradient(135deg, #00C896 0%, #89F2E8 100%); color: white; padding: 30px; text-align: center; border-radius: 10px 10px 0 0; }
@@ -27,14 +27,14 @@ export function generateWelcomeEmail(name: string): EmailTemplate {
         </head>
         <body>
           <div class="header">
-            <h1>🎉 Welcome to CodePVG!</h1>
+            <h1>🎉 Welcome to codCampus!</h1>
             <p>Your journey to coding excellence starts now</p>
           </div>
 
           <div class="content">
             <h2>Hi ${name}!</h2>
 
-            <p>Welcome to <strong>CodePVG</strong>, the ultimate coding platform designed exclusively for college students!</p>
+            <p>Welcome to <strong>codCampus</strong>, the ultimate coding platform designed exclusively for college students!</p>
 
             <div class="highlight">
               <h3>🚀 What's Next?</h3>
@@ -57,28 +57,28 @@ export function generateWelcomeEmail(name: string): EmailTemplate {
 
             <div style="text-align: center;">
               <a href="${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'}" class="button">
-                Visit CodePVG
+                Visit codCampus
               </a>
             </div>
 
             <p>Happy coding! 💻</p>
 
-            <p><strong>The CodePVG Team</strong></p>
+            <p><strong>The codCampus Team</strong></p>
           </div>
 
           <div class="footer">
-            <p>© 2024 CodePVG. All rights reserved.</p>
-            <p>Questions? Contact us at support@codepvg.edu</p>
+            <p>© 2024 codCampus. All rights reserved.</p>
+            <p>Questions? Contact us at support@codcampus.edu</p>
           </div>
         </body>
       </html>
     `,
     text: `
-      Welcome to CodePVG!
+      Welcome to codCampus!
 
       Hi ${name}!
 
-      Welcome to CodePVG, the ultimate coding platform designed exclusively for college students!
+      Welcome to codCampus, the ultimate coding platform designed exclusively for college students!
 
       What's Next?
       - Complete your profile setup
@@ -90,28 +90,28 @@ export function generateWelcomeEmail(name: string): EmailTemplate {
 
       In the meantime, you can browse our public leaderboard and prepare for your first contest.
 
-      Visit CodePVG: ${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'}
+      Visit codCampus: ${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'}
 
       Happy coding!
 
-      The CodePVG Team
+      The codCampus Team
 
-      © 2024 CodePVG. All rights reserved.
-      Questions? Contact us at support@codepvg.edu
+      © 2024 codCampus. All rights reserved.
+      Questions? Contact us at support@codcampus.edu
     `
   }
 }
 
 export function generateApprovalEmail(name: string): EmailTemplate {
   return {
-    subject: '🎉 Your CodePVG Account Has Been Approved!',
+    subject: '🎉 Your codCampus Account Has Been Approved!',
     html: `
       <!DOCTYPE html>
       <html>
         <head>
           <meta charset="utf-8">
           <meta name="viewport" content="width=device-width, initial-scale=1.0">
-          <title>Account Approved - CodePVG</title>
+          <title>Account Approved - codCampus</title>
           <style>
             body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px; }
             .header { background: linear-gradient(135deg, #00C896 0%, #89F2E8 100%); color: white; padding: 30px; text-align: center; border-radius: 10px 10px 0 0; }
@@ -124,13 +124,13 @@ export function generateApprovalEmail(name: string): EmailTemplate {
         <body>
           <div class="header">
             <h1>🎉 Account Approved!</h1>
-            <p>Welcome to the CodePVG community</p>
+            <p>Welcome to the codCampus community</p>
           </div>
 
           <div class="content">
             <h2>Great news, ${name}!</h2>
 
-            <p>Your CodePVG account has been <strong>approved</strong> by our administrators! 🎊</p>
+            <p>Your codCampus account has been <strong>approved</strong> by our administrators! 🎊</p>
 
             <div class="highlight">
               <h3>🚀 You can now:</h3>
@@ -156,12 +156,12 @@ export function generateApprovalEmail(name: string): EmailTemplate {
 
             <p>Happy coding! 💻</p>
 
-            <p><strong>The CodePVG Team</strong></p>
+            <p><strong>The codCampus Team</strong></p>
           </div>
 
           <div class="footer">
-            <p>© 2024 CodePVG. All rights reserved.</p>
-            <p>Questions? Contact us at support@codepvg.edu</p>
+            <p>© 2024 codCampus. All rights reserved.</p>
+            <p>Questions? Contact us at support@codcampus.edu</p>
           </div>
         </body>
       </html>
@@ -171,7 +171,7 @@ export function generateApprovalEmail(name: string): EmailTemplate {
 
       Great news, ${name}!
 
-      Your CodePVG account has been approved by our administrators!
+      Your codCampus account has been approved by our administrators!
 
       You can now:
       - Access your personalized dashboard
@@ -189,10 +189,10 @@ export function generateApprovalEmail(name: string): EmailTemplate {
 
       Happy coding!
 
-      The CodePVG Team
+      The codCampus Team
 
-      © 2024 CodePVG. All rights reserved.
-      Questions? Contact us at support@codepvg.edu
+      © 2024 codCampus. All rights reserved.
+      Questions? Contact us at support@codcampus.edu
     `
   }
 }
@@ -206,7 +206,7 @@ export function generateContestReminderEmail(name: string, contestName: string, 
         <head>
           <meta charset="utf-8">
           <meta name="viewport" content="width=device-width, initial-scale=1.0">
-          <title>Contest Reminder - CodePVG</title>
+          <title>Contest Reminder - codCampus</title>
           <style>
             body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px; }
             .header { background: linear-gradient(135deg, #00C896 0%, #89F2E8 100%); color: white; padding: 30px; text-align: center; border-radius: 10px 10px 0 0; }
@@ -250,12 +250,12 @@ export function generateContestReminderEmail(name: string, contestName: string, 
 
             <p>Good luck and may the best coder win! 🏆</p>
 
-            <p><strong>The CodePVG Team</strong></p>
+            <p><strong>The codCampus Team</strong></p>
           </div>
 
           <div class="footer">
-            <p>© 2024 CodePVG. All rights reserved.</p>
-            <p>Questions? Contact us at support@codepvg.edu</p>
+            <p>© 2024 codCampus. All rights reserved.</p>
+            <p>Questions? Contact us at support@codcampus.edu</p>
           </div>
         </body>
       </html>
@@ -281,10 +281,10 @@ export function generateContestReminderEmail(name: string, contestName: string, 
 
       Good luck and may the best coder win!
 
-      The CodePVG Team
+      The codCampus Team
 
-      © 2024 CodePVG. All rights reserved.
-      Questions? Contact us at support@codepvg.edu
+      © 2024 codCampus. All rights reserved.
+      Questions? Contact us at support@codcampus.edu
     `
   }
 }
@@ -306,7 +306,7 @@ export function generateStreakMilestoneEmail(name: string, streakDays: number): 
         <head>
           <meta charset="utf-8">
           <meta name="viewport" content="width=device-width, initial-scale=1.0">
-          <title>Streak Milestone - CodePVG</title>
+          <title>Streak Milestone - codCampus</title>
           <style>
             body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px; }
             .header { background: linear-gradient(135deg, #00C896 0%, #89F2E8 100%); color: white; padding: 30px; text-align: center; border-radius: 10px 10px 0 0; }
@@ -359,12 +359,12 @@ export function generateStreakMilestoneEmail(name: string, streakDays: number): 
 
             <p>You're doing amazing! Keep coding! 💻✨</p>
 
-            <p><strong>The CodePVG Team</strong></p>
+            <p><strong>The codCampus Team</strong></p>
           </div>
 
           <div class="footer">
-            <p>© 2024 CodePVG. All rights reserved.</p>
-            <p>Questions? Contact us at support@codepvg.edu</p>
+            <p>© 2024 codCampus. All rights reserved.</p>
+            <p>Questions? Contact us at support@codcampus.edu</p>
           </div>
         </body>
       </html>
@@ -390,10 +390,10 @@ export function generateStreakMilestoneEmail(name: string, streakDays: number): 
 
       You're doing amazing! Keep coding!
 
-      The CodePVG Team
+      The codCampus Team
 
-      © 2024 CodePVG. All rights reserved.
-      Questions? Contact us at support@codepvg.edu
+      © 2024 codCampus. All rights reserved.
+      Questions? Contact us at support@codcampus.edu
     `
   }
 }
@@ -407,7 +407,7 @@ export function generateContestResultsEmail(name: string, contestName: string, r
         <head>
           <meta charset="utf-8">
           <meta name="viewport" content="width=device-width, initial-scale=1.0">
-          <title>Contest Results - CodePVG</title>
+          <title>Contest Results - codCampus</title>
           <style>
             body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px; }
             .header { background: linear-gradient(135deg, #00C896 0%, #89F2E8 100%); color: white; padding: 30px; text-align: center; border-radius: 10px 10px 0 0; }
@@ -460,12 +460,12 @@ export function generateContestResultsEmail(name: string, contestName: string, r
 
             <p>Keep pushing your limits! 🚀</p>
 
-            <p><strong>The CodePVG Team</strong></p>
+            <p><strong>The codCampus Team</strong></p>
           </div>
 
           <div class="footer">
-            <p>© 2024 CodePVG. All rights reserved.</p>
-            <p>Questions? Contact us at support@codepvg.edu</p>
+            <p>© 2024 codCampus. All rights reserved.</p>
+            <p>Questions? Contact us at support@codcampus.edu</p>
           </div>
         </body>
       </html>
@@ -494,24 +494,24 @@ export function generateContestResultsEmail(name: string, contestName: string, r
 
       Keep pushing your limits!
 
-      The CodePVG Team
+      The codCampus Team
 
-      © 2024 CodePVG. All rights reserved.
-      Questions? Contact us at support@codepvg.edu
+      © 2024 codCampus. All rights reserved.
+      Questions? Contact us at support@codcampus.edu
     `
   }
 }
 
 export function generateRestrictionEmail(name: string, reason: string): EmailTemplate {
   return {
-    subject: '⚠️ Important: Your CodePVG Account Has Been Restricted',
+    subject: '⚠️ Important: Your codCampus Account Has Been Restricted',
     html: `
       <!DOCTYPE html>
       <html>
         <head>
           <meta charset="utf-8">
           <meta name="viewport" content="width=device-width, initial-scale=1.0">
-          <title>Account Restricted - CodePVG</title>
+          <title>Account Restricted - codCampus</title>
           <style>
             body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px; }
             .header { background: linear-gradient(135deg, #EF4444 0%, #F87171 100%); color: white; padding: 30px; text-align: center; border-radius: 10px 10px 0 0; }
@@ -523,13 +523,13 @@ export function generateRestrictionEmail(name: string, reason: string): EmailTem
         <body>
           <div class="header">
             <h1>⚠️ Account Restricted</h1>
-            <p>Access to CodePVG features has been limited</p>
+            <p>Access to codCampus features has been limited</p>
           </div>
 
           <div class="content">
             <h2>Hi ${name},</h2>
 
-            <p>We are writing to inform you that your CodePVG account has been <strong>restricted</strong> by an administrator.</p>
+            <p>We are writing to inform you that your codCampus account has been <strong>restricted</strong> by an administrator.</p>
 
             <div class="reason-box">
               <h3>Restriction Reason:</h3>
@@ -541,12 +541,12 @@ export function generateRestrictionEmail(name: string, reason: string): EmailTem
             <p>If you believe this is a mistake or would like to appeal this decision, please contact the administration department at your earliest convenience.</p>
 
             <p>Regards,</p>
-            <p><strong>The CodePVG Admin Team</strong></p>
+            <p><strong>The codCampus Admin Team</strong></p>
           </div>
 
           <div class="footer">
-            <p>© 2024 CodePVG. All rights reserved.</p>
-            <p>Technical Support: support@codepvg.edu</p>
+            <p>© 2024 codCampus. All rights reserved.</p>
+            <p>Technical Support: support@codcampus.edu</p>
           </div>
         </body>
       </html>
@@ -556,7 +556,7 @@ export function generateRestrictionEmail(name: string, reason: string): EmailTem
 
       Hi ${name},
 
-      We are writing to inform you that your CodePVG account has been restricted by an administrator.
+      We are writing to inform you that your codCampus account has been restricted by an administrator.
 
       Restriction Reason:
       ${reason}
@@ -566,23 +566,23 @@ export function generateRestrictionEmail(name: string, reason: string): EmailTem
       If you believe this is a mistake, please contact the administration department.
 
       Regards,
-      The CodePVG Admin Team
+      The codCampus Admin Team
 
-      © 2024 CodePVG. All rights reserved.
+      © 2024 codCampus. All rights reserved.
     `
   }
 }
 
 export function generateRevocationEmail(name: string): EmailTemplate {
   return {
-    subject: '✅ CodePVG Account Restriction Lifted',
+    subject: '✅ codCampus Account Restriction Lifted',
     html: `
       <!DOCTYPE html>
       <html>
         <head>
           <meta charset="utf-8">
           <meta name="viewport" content="width=device-width, initial-scale=1.0">
-          <title>Restriction Lifted - CodePVG</title>
+          <title>Restriction Lifted - codCampus</title>
           <style>
             body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px; }
             .header { background: linear-gradient(135deg, #10B981 0%, #34D399 100%); color: white; padding: 30px; text-align: center; border-radius: 10px 10px 0 0; }
@@ -600,7 +600,7 @@ export function generateRevocationEmail(name: string): EmailTemplate {
           <div class="content">
             <h2>Hi ${name}!</h2>
 
-            <p>Good news! The restriction on your CodePVG account has been <strong>lifted</strong> by an administrator.</p>
+            <p>Good news! The restriction on your codCampus account has been <strong>lifted</strong> by an administrator.</p>
 
             <p>You now have full access to all platform features, including:</p>
             <ul>
@@ -618,11 +618,11 @@ export function generateRevocationEmail(name: string): EmailTemplate {
             <p>Welcome back! Let's get back to coding.</p>
 
             <p>Regards,</p>
-            <p><strong>The CodePVG Team</strong></p>
+            <p><strong>The codCampus Team</strong></p>
           </div>
 
           <div class="footer">
-            <p>© 2024 CodePVG. All rights reserved.</p>
+            <p>© 2024 codCampus. All rights reserved.</p>
           </div>
         </body>
       </html>
@@ -632,7 +632,7 @@ export function generateRevocationEmail(name: string): EmailTemplate {
 
       Hi ${name}!
 
-      Good news! The restriction on your CodePVG account has been lifted by an administrator.
+      Good news! The restriction on your codCampus account has been lifted by an administrator.
 
       You now have full access to all platform features.
 
@@ -641,9 +641,9 @@ export function generateRevocationEmail(name: string): EmailTemplate {
       Return to Dashboard: ${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'}/dashboard
 
       Regards,
-      The CodePVG Team
+      The codCampus Team
 
-      © 2024 CodePVG. All rights reserved.
+      © 2024 codCampus. All rights reserved.
     `
   }
 }

@@ -20,7 +20,7 @@ export default function AboutPage() {
           </div>
           
           <h1 className="text-6xl md:text-8xl font-black mb-8 gradient-text">
-            About CodePVG
+            About codCampus
           </h1>
           
           <p className="text-2xl md:text-3xl text-muted-foreground mb-12 max-w-4xl mx-auto leading-relaxed">
@@ -180,7 +180,7 @@ export default function AboutPage() {
             Ready to Get Started?
           </h2>
           <p className="text-lg text-muted-foreground mb-8">
-            Join thousands of students who are already improving their coding skills with CodePVG.
+            Join thousands of students who are already improving their coding skills with codCampus.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/auth/signup" className="simple-button inline-flex items-center gap-2">

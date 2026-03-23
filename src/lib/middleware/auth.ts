@@ -1,5 +1,5 @@
 /**
- * Authentication Middleware for CodePVG
+ * Authentication Middleware for codCampus
  * 
  * This middleware provides authentication and authorization checks for API routes.
  * It verifies JWT tokens, checks user roles, and ensures proper access control.

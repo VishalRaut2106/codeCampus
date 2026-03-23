@@ -2,7 +2,7 @@
 
 ## Overview
 
-This cache system provides comprehensive caching, request deduplication, and automatic cache invalidation for the CodePVG platform. It reduces API calls by 50% and improves performance significantly.
+This cache system provides comprehensive caching, request deduplication, and automatic cache invalidation for the codCampus platform. It reduces API calls by 50% and improves performance significantly.
 
 ## Components
 

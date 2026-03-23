@@ -217,7 +217,7 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <p className="font-medium">Email</p>
-                    <p className="text-sm text-muted-foreground">support@codepvg.com</p>
+                    <p className="text-sm text-muted-foreground">support@codcampus.com</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-3">

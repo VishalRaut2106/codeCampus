@@ -27,7 +27,7 @@ export default function ResizableSplitView({
   defaultSplitRatio = 40,
   minLeftWidth = 20,
   maxLeftWidth = 80,
-  storageKey = 'codepvg_split_ratio',
+  storageKey = 'codcampus_split_ratio',
   mobileBreakpoint = 768,
   onSplitRatioChange,
 }: ResizableSplitViewProps) {

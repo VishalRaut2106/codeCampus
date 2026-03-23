@@ -17,7 +17,7 @@ export const useTheme = () => {
 };
 
 export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-    const [isDark, setIsDark] = useState(true); // Default to dark for CodePVG
+    const [isDark, setIsDark] = useState(true); // Default to dark for codCampus
 
     const toggleTheme = () => {
         setIsDark(!isDark);
