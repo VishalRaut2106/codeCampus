@@ -1,0 +1,139 @@
+=== PYTHON AOT ===
+try:
+        input_data = sys.stdin.read().strip()
+        
+        # 1. Check for Design Class Pattern
+        is_design = False
+        try:
+            parsed = None
+            if input_data.startswith('["') and ('\n[' in input_data or '] [' in input_data):
+                parts = input_data.split('\n', 1) if '\n' in input_data else []
+                if len(parts) == 2:
+                    parsed = [json.loads(parts[0]), json.loads(parts[1])]
+            elif input_data.startswith('[['):
+                parsed = json.loads(input_data)
+                
+            if parsed and isinstance(parsed, list) and len(parsed) == 2 and isinstance(parsed[0], list) and isinstance(parsed[1], list):
+                is_design = True
+                commands = parsed[0]
+                args = parsed[1]
+                class_name = commands[0]
+                
+                cls = globals().get(class_name)
+                obj = cls(*args[0]) if cls else None
+                
+                outputs = [None]
+                for i in range(1, len(commands)):
+                    cmd = commands[i]
+                    arg = args[i] if i < len(args) else []
+                    
+                    if obj and hasattr(obj, cmd):
+                        func = getattr(obj, cmd)
+                        res = func(*arg)
+                        outputs.append(res)
+                    else:
+                        outputs.append(None)
+                        
+                print(json.dumps(outputs))
+        except:
+            pass
+
+        # 2. Standard Function Invocation
+        if not is_design:
+            sol = Solution() if 'Solution' in globals() else None
+            
+            def call_method(obj, names, *args):
+                for name in names:
+                    func = getattr(obj, name, None) or globals().get(name)
+                    if func and callable(func): return func(*args)
+                
+                target_params = len(args)
+                import inspect
+                if obj:
+                    for m_name in dir(obj):
+                        if m_name.startswith('__'): continue
+                        method = getattr(obj, m_name)
+                        if not callable(method): continue
+                        try:
+                            sig = inspect.signature(method)
+                            if len(sig.parameters) == target_params: return method(*args)
+                        except: continue
+                return None
+
+            result = None
+            
+            # Check for Multiple Arrays (Linked Lists)
+            if input_data.startswith('[') and ']' in input_data:
+                try:
+                    import re
+                    matches = re.findall(r'\[.*?\]', input_data)
+                    if len(matches) >= 2 and not any(c.isalpha() for c in input_data if c not in ['t','r','u','e','f','a','l','s','n']):
+                        parsed_args = [json.loads(m.replace('\n', ' ')) for m in matches]
+                        
+                        if 'ListNode' in """
+class Solution:
+    def twoSum(self, nums: list[int], target: int) -> list[int]:
+        return []
+""" or 'addTwoNumbers' in """
+class Solution:
+    def twoSum(self, nums: list[int], target: int) -> list[int]:
+        return []
+""":
+                            def create_list(arr):
+                                if not arr: return None
+                                head = ListNode(arr[0])
+                                curr = head
+                                for i in range(1, len(arr)):
+                                    curr.next = ListNode(arr[i])
+                                    curr = curr.next
+                                return head
+                            list_args = [create_list(arr) for arr in parsed_args]
+                            result = call_method(sol, ['twoSum', 'addTwoNumbers', 'solve', 'solution'], *list_args)
+                except: pass
+
+            if result is None:
+                try:
+                    nums = [2,7,11,15]
+                    target = 9
+                    if "aot_metadata" == "aot_metadata":
+                        result = call_method(sol, ['twoSum'], nums, target)
+                    elif 'nums' in locals() and 'target' in locals():
+                        result = call_method(sol, ['twoSum', 'two_sum', 'solve'], nums, target)
+                except: pass
+
+            if result is None:
+                if input_data.startswith('[') and ']' in input_data:
+                    try:
+                        last_bracket = input_data.rfind(']')
+                        array_part = input_data[:last_bracket+1]
+                        
+                        # Fix slice error for single array inputs
+                        target_part = input_data[last_bracket+1:].strip().split()[0] if len(input_data) > last_bracket+1 and input_data[last_bracket+1:].strip() else None
+                        
+                        nums = json.loads(array_part.replace('\n', ' '))
+                        if target_part:
+                            target = int(target_part)
+                            result = call_method(sol, ['twoSum', 'two_sum', 'solve'], nums, target)
+                        else:
+                            result = call_method(sol, ['solve', 'solution'], nums)
+                    except: pass
+                else:
+                    result = call_method(sol, ['twoSum', 'solve', 'solution'], input_data)
+
+            if result is not None:
+                if hasattr(result, 'val') and hasattr(result, 'next'):
+                    arr = []
+                    curr = result
+                    while curr and len(arr) < 1000:
+                        arr.append(curr.val)
+                        curr = curr.next
+                    print(json.dumps(arr))
+                elif isinstance(result, (list, dict)):
+                    print(json.dumps(result))
+                else:
+                    print(result)
+            else:
+                print(f"Error: No results from compatible method")
+    except Exception as e:
+        print(f"Runtime Error: {e}")
+

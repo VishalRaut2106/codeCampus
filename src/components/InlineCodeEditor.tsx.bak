@@ -1,0 +1,503 @@
+'use client'
+
+import { useState, useRef } from 'react'
+import Editor from '@monaco-editor/react'
+import { Button } from '@/components/ui/button'
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
+import { toast } from 'sonner'
+import {
+  Play,
+  CheckCircle,
+  XCircle,
+  Clock,
+  ChevronDown,
+  ChevronUp
+} from 'lucide-react'
+
+interface InlineCodeEditorProps {
+  initialCode?: string
+  language?: string
+  onCodeChange?: (code: string) => void
+  onSubmit?: (code: string, language: string) => void
+  contestMode?: boolean
+  timeRemaining?: number
+  problemTitle?: string
+  problemId?: string
+  testCases?: Array<{
+    input: string
+    expectedOutput: string
+  }>
+}
+
+interface TestResult {
+  testCase: number
+  status: 'passed' | 'failed'
+  input?: string
+  expected?: string
+  actual?: string
+  error?: string
+  errorType?: string
+  time?: string
+  memory?: number
+}
+
+export default function InlineCodeEditor({
+  initialCode = '',
+  language = 'python',
+  onCodeChange,
+  onSubmit,
+  contestMode = false,
+  timeRemaining,
+  problemTitle = 'Solution',
+  problemId,
+  testCases = []
+}: InlineCodeEditorProps) {
+  const getBoilerplate = (lang: string, title: string) => {
+    const functionName = title.toLowerCase().replace(/[^a-z0-9]/g, '_').replace(/_+/g, '_').replace(/^_|_$/g, '') || 'solution'
+    const className = title.replace(/[^a-zA-Z0-9]/g, '') || 'Solution'
+
+    const templates: Record<string, string> = {
+      python: `def ${functionName}(input_data):
+    # Write your solution here
+    pass`,
+      java: `class ${className} {
+    public String solve(String input) {
+        // Write your solution here
+        return "";
+    }
+}`,
+      cpp: `class ${className} {
+public:
+    string solve(string input) {
+        // Write your solution here
+        return "";
+    }
+};`,
+      c: `char* ${functionName}(char* input) {
+    // Write your solution here
+    return "";
+}`,
+      javascript: `var ${functionName} = function(input) {
+    // Write your solution here
+    
+};`
+    }
+
+    return templates[lang] || templates.python
+  }
+
+  const [code, setCode] = useState(initialCode || getBoilerplate(language, problemTitle))
+  const [selectedLanguage, setSelectedLanguage] = useState(language)
+  const [isRunning, setIsRunning] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [testResults, setTestResults] = useState<TestResult[]>([])
+  const [allTestsPassed, setAllTestsPassed] = useState(false)
+  const [activeTab, setActiveTab] = useState<'testcases' | 'results'>('testcases')
+  const [showPanel, setShowPanel] = useState(false)
+  const editorRef = useRef<any>(null)
+
+  const languages = [
+    { value: 'python', label: 'Python' },
+    { value: 'java', label: 'Java' },
+    { value: 'cpp', label: 'C++' },
+    { value: 'c', label: 'C' },
+    { value: 'javascript', label: 'JavaScript' }
+  ]
+
+  const handleLanguageChange = (newLang: string) => {
+    if (code !== getBoilerplate(selectedLanguage, problemTitle)) {
+      if (!confirm('Changing language will reset your code. Continue?')) {
+        return
+      }
+    }
+    setSelectedLanguage(newLang)
+    setCode(getBoilerplate(newLang, problemTitle))
+  }
+
+  const handleRunCode = async () => {
+    if (!code.trim()) {
+      toast.error('Please write some code first')
+      return
+    }
+
+    // Basic syntax validation
+    const lang = selectedLanguage.toLowerCase()
+    if (lang === 'java' && !code.includes('class ')) {
+      toast.error('Java code must contain a class definition')
+      return
+    }
+    if (lang === 'cpp' && !code.includes('solve') && !code.includes('solution')) {
+      toast.error('C++ code must contain a solve or solution function')
+      return
+    }
+    if (lang === 'python' && !code.includes('def ')) {
+      toast.error('Python code must contain a function definition')
+      return
+    }
+
+    setIsRunning(true)
+    setActiveTab('results')
+    setShowPanel(true)
+
+    try {
+      // Simulate real API call to submission endpoint
+      const response = await fetch('/api/submissions/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          problemId: problemId || 'test-problem', // Use provided problemId or fallback
+          code,
+          language: selectedLanguage,
+          dryRun: true // Don't save to database
+        })
+      })
+
+      let result
+      try {
+        const contentType = response.headers.get('content-type')
+        if (contentType && contentType.includes('application/json')) {
+          result = await response.json()
+        } else {
+          const text = await response.text()
+          console.error('Non-JSON response:', text)
+          result = {
+            success: false,
+            error: `Server error: ${text.substring(0, 100)}${text.length > 100 ? '...' : ''}`
+          }
+        }
+      } catch (parseError) {
+        console.error('Failed to parse response:', parseError)
+        result = {
+          success: false,
+          error: 'Failed to parse server response'
+        }
+      }
+
+      if (result.success && result.results) {
+        const mappedResults: TestResult[] = result.results.map((r: any) => ({
+          testCase: r.idx,
+          status: r.status,
+          input: r.input || testCases[r.idx - 1]?.input || '',
+          expected: r.expected,
+          actual: r.output,
+          error: r.error,
+          errorType: r.errorType,
+          time: r.time,
+          memory: r.memory
+        }))
+
+        const passed = mappedResults.every(r => r.status === 'passed')
+
+        setTestResults(mappedResults)
+        setAllTestsPassed(passed)
+
+        if (passed) {
+          toast.success(`✅ All ${mappedResults.length} test cases passed!`, {
+            description: 'Your solution is ready for submission'
+          })
+        } else {
+          const failedCount = mappedResults.filter((r: TestResult) => r.status === 'failed').length
+          const firstError = mappedResults.find((r: TestResult) => r.status === 'failed')
+          toast.error(`❌ ${failedCount} of ${mappedResults.length} test cases failed`, {
+            description: firstError?.error || 'Check the test results for details'
+          })
+        }
+      } else {
+        toast.error('Failed to execute code', {
+          description: result.error || 'Unknown error occurred'
+        })
+        setTestResults([])
+        setAllTestsPassed(false)
+      }
+    } catch (error) {
+      console.error('Run code error:', error)
+      toast.error('Failed to run code', {
+        description: 'Network error or server unavailable'
+      })
+      setTestResults([])
+      setAllTestsPassed(false)
+    } finally {
+      setIsRunning(false)
+    }
+  }
+
+  const handleSubmit = () => {
+    if (!allTestsPassed) {
+      toast.error('Please run and pass all test cases before submitting')
+      return
+    }
+
+    setIsSubmitting(true)
+
+    if (onSubmit) {
+      onSubmit(code, selectedLanguage)
+    }
+
+    setTimeout(() => setIsSubmitting(false), 1000)
+  }
+
+  return (
+    <div className="flex flex-col h-full">
+      {/* Editor Header */}
+      <div className="flex items-center justify-between p-3 border-b border-border bg-card">
+        <div className="flex items-center gap-3">
+          {contestMode && timeRemaining !== undefined && (
+            <div className={`flex items-center gap-2 px-3 py-1.5 rounded-full text-sm font-medium ${timeRemaining < 300 ? 'bg-red-500/20 text-red-400 animate-pulse' : 'bg-white/10 text-white/80'
+              }`}>
+              <Clock className="h-4 w-4" />
+              {Math.floor(timeRemaining / 60)}:{(timeRemaining % 60).toString().padStart(2, '0')}
+            </div>
+          )}
+
+          <Select value={selectedLanguage} onValueChange={handleLanguageChange}>
+            <SelectTrigger className="w-40 bg-muted border-border">
+              <SelectValue />
+            </SelectTrigger>
+            <SelectContent>
+              {languages.map(lang => (
+                <SelectItem key={lang.value} value={lang.value}>
+                  {lang.label}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        </div>
+      </div>
+
+      {/* Monaco Editor */}
+      <div className={showPanel ? 'h-[calc(100%-350px)]' : 'flex-1'}>
+        <Editor
+          height="100%"
+          language={selectedLanguage === 'cpp' ? 'cpp' : selectedLanguage}
+          value={code}
+          onChange={(value) => {
+            setCode(value || '')
+            onCodeChange?.(value || '')
+          }}
+          onMount={(editor) => { editorRef.current = editor }}
+          theme="vs-dark"
+          options={{
+            minimap: { enabled: false },
+            fontSize: 14,
+            lineNumbers: 'on',
+            scrollBeyondLastLine: false,
+            readOnly: isRunning,
+            automaticLayout: true,
+            tabSize: 4,
+            wordWrap: 'on',
+            padding: { top: 16, bottom: 16 },
+          }}
+        />
+      </div>
+
+      {/* Bottom Panel - Test Cases / Results */}
+      {showPanel && (
+        <div className="h-[300px] border-t border-border bg-card flex flex-col">
+          {/* Tabs */}
+          <div className="flex items-center justify-between px-4 py-2 border-b border-border">
+            <div className="flex items-center gap-4">
+              <button
+                onClick={() => setActiveTab('testcases')}
+                className={`text-sm font-medium pb-2 border-b-2 transition-colors ${activeTab === 'testcases'
+                  ? 'border-primary text-primary'
+                  : 'border-transparent text-muted-foreground hover:text-foreground'
+                  }`}
+              >
+                Testcase
+              </button>
+              <button
+                onClick={() => setActiveTab('results')}
+                className={`text-sm font-medium pb-2 border-b-2 transition-colors ${activeTab === 'results'
+                  ? 'border-primary text-primary'
+                  : 'border-transparent text-muted-foreground hover:text-foreground'
+                  }`}
+              >
+                Test Result
+              </button>
+            </div>
+            <button
+              onClick={() => setShowPanel(false)}
+              className="text-muted-foreground hover:text-foreground transition-colors"
+              title="Collapse"
+            >
+              <ChevronDown className="h-4 w-4" />
+            </button>
+          </div>
+
+          {/* Content */}
+          <div className="flex-1 overflow-y-auto p-4">
+            {activeTab === 'testcases' ? (
+              <div className="space-y-3">
+                {testCases.length > 0 ? (
+                  testCases.map((tc, idx) => (
+                    <div key={idx} className="space-y-2">
+                      <div className="text-sm font-medium">Case {idx + 1}</div>
+                      <div className="space-y-1 text-sm">
+                        <div>
+                          <span className="text-muted-foreground">Input:</span>
+                          <div className="mt-1 p-2 bg-muted rounded font-mono text-xs">{tc.input}</div>
+                        </div>
+                        <div>
+                          <span className="text-muted-foreground">Expected Output:</span>
+                          <div className="mt-1 p-2 bg-muted rounded font-mono text-xs">{tc.expectedOutput}</div>
+                        </div>
+                      </div>
+                    </div>
+                  ))
+                ) : (
+                  <div className="text-sm text-muted-foreground">No test cases available</div>
+                )}
+              </div>
+            ) : (
+              <div className="space-y-3">
+                {testResults.length > 0 ? (
+                  <>
+                    <div className={`flex items-center gap-2 text-sm font-medium ${allTestsPassed ? 'text-green-400' : 'text-red-400'
+                      }`}>
+                      {allTestsPassed ? <CheckCircle className="h-4 w-4" /> : <XCircle className="h-4 w-4" />}
+                      {testResults.filter(r => r.status === 'passed').length} / {testResults.length} test cases passed
+                    </div>
+
+                    {testResults.map((result, idx) => (
+                      <div key={idx} className={`p-3 rounded border ${result.status === 'passed'
+                        ? 'bg-green-500/10 border-green-500/30'
+                        : 'bg-red-500/10 border-red-500/30'
+                        }`}>
+                        <div className="flex items-center justify-between mb-2">
+                          <div className="flex items-center gap-2">
+                            {result.status === 'passed' ? (
+                              <CheckCircle className="h-4 w-4 text-green-400" />
+                            ) : (
+                              <XCircle className="h-4 w-4 text-red-400" />
+                            )}
+                            <span className="text-sm font-medium">Test Case {result.testCase}</span>
+                            {result.errorType && (
+                              <span className="text-xs px-2 py-1 bg-red-500/20 text-red-400 rounded">
+                                {result.errorType}
+                              </span>
+                            )}
+                          </div>
+                          {result.status === 'passed' && (result.time || result.memory) && (
+                            <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                              {result.time && <span>{result.time}s</span>}
+                              {result.memory && <span>{Math.round(result.memory / 1024)}KB</span>}
+                            </div>
+                          )}
+                        </div>
+
+                        {result.status === 'failed' && (
+                          <div className="space-y-2 text-xs">
+                            {result.error && (
+                              <div className="p-2 bg-red-500/10 border border-red-500/20 rounded">
+                                <div className="text-red-400 font-medium mb-1">Error Details:</div>
+                                <div className="text-red-300 font-mono text-xs whitespace-pre-wrap">
+                                  {result.error}
+                                </div>
+                              </div>
+                            )}
+
+                            {!result.error && (
+                              <>
+                                <div>
+                                  <span className="text-muted-foreground font-medium">Input:</span>
+                                  <div className="mt-1 p-2 bg-black/30 rounded font-mono">{result.input}</div>
+                                </div>
+                                <div>
+                                  <span className="text-muted-foreground font-medium">Expected:</span>
+                                  <div className="mt-1 p-2 bg-black/30 rounded font-mono text-green-400">{result.expected}</div>
+                                </div>
+                                <div>
+                                  <span className="text-muted-foreground font-medium">Your Output:</span>
+                                  <div className="mt-1 p-2 bg-black/30 rounded font-mono text-red-400">
+                                    {result.actual || '(no output)'}
+                                  </div>
+                                </div>
+                              </>
+                            )}
+                          </div>
+                        )}
+
+                        {result.status === 'passed' && (
+                          <div className="text-xs text-green-400/80">
+                            ✓ Output matches expected result
+                          </div>
+                        )}
+                      </div>
+                    ))}
+                  </>
+                ) : (
+                  <div className="text-sm text-muted-foreground">You must run your code first</div>
+                )}
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+
+      {/* Footer Actions */}
+      <div className="flex items-center justify-between p-3 border-t border-border bg-card">
+        <Button
+          variant="ghost"
+          size="sm"
+          onClick={() => setShowPanel(!showPanel)}
+          className="text-sm"
+        >
+          {showPanel ? (
+            <>
+              <ChevronDown className="h-4 w-4 mr-1" />
+              Hide
+            </>
+          ) : (
+            <>
+              <ChevronUp className="h-4 w-4 mr-1" />
+              Testcase
+            </>
+          )}
+        </Button>
+
+        <div className="flex items-center gap-2">
+          <Button
+            onClick={handleRunCode}
+            disabled={isRunning || !code.trim()}
+            variant="outline"
+            className="border-border"
+          >
+            {isRunning ? (
+              <>
+                <Clock className="h-4 w-4 mr-2 animate-spin" />
+                Running...
+              </>
+            ) : (
+              <>
+                <Play className="h-4 w-4 mr-2" />
+                Run
+              </>
+            )}
+          </Button>
+
+          {allTestsPassed && (
+            <Button
+              onClick={handleSubmit}
+              disabled={isSubmitting || !code.trim()}
+              className="bg-green-600 hover:bg-green-700 text-white"
+            >
+              {isSubmitting ? (
+                <>
+                  <Clock className="h-4 w-4 mr-2 animate-spin" />
+                  Submitting...
+                </>
+              ) : (
+                <>
+                  <CheckCircle className="h-4 w-4 mr-2" />
+                  Submit
+                </>
+              )}
+            </Button>
+          )}
+        </div>
+      </div>
+    </div>
+  )
+}

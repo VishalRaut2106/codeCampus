@@ -1,0 +1,65 @@
+name: PR Build Check
+
+on:
+  pull_request:
+    branches: [ "main", "master" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      pull-requests: write # Required to post comments
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+        cache: 'npm'
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Create .env file
+      run: cp .env.example .env
+
+    - name: Build Project
+      id: build
+      # Pipe stdout and stderr to a file, but also keep it on screen (tee)
+      # We use '|| true' to ensure the step doesn't fail immediately, so we can run analysis
+      run: |
+        npm run build > build.log 2>&1 || echo "BUILD_FAILED=true" >> $GITHUB_ENV
+        cat build.log
+
+    - name: Analyze Failure with Gemini
+      if: env.BUILD_FAILED == 'true'
+      env:
+        GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+      run: |
+        npm install @google/generative-ai
+        node scripts/analyze-pr-failure.js build.log > analysis.md
+
+    - name: Post Analysis Comment
+      if: env.BUILD_FAILED == 'true'
+      uses: actions/github-script@v7
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        script: |
+          const fs = require('fs');
+          const analysis = fs.readFileSync('analysis.md', 'utf8');
+          
+          await github.rest.issues.createComment({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            issue_number: context.issue.number,
+            body: `### ❌ Build Failed\n\nHere is an AI-powered analysis of the failure:\n\n${analysis}`
+          });
+
+    - name: Fail Workflow
+      if: env.BUILD_FAILED == 'true'
+      run: exit 1
